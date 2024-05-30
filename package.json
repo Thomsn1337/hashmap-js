@@ -1,0 +1,10 @@
+{
+    "name": "hashmap",
+    "version": "1.0.0",
+    "description": "A simple hash map implemented in JavaScript",
+    "main": "index.js",
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "GPL-3.0-only"
+}
