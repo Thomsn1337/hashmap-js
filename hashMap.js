@@ -132,6 +132,25 @@ class HashMap {
         return keys;
     }
 
+    /**
+     * @returns {any[]}
+     */
+    values() {
+        const values = [];
+
+        this.#buckets.forEach((bucket) => {
+            let current = bucket.head;
+
+            while (current) {
+                values.push(current.value);
+
+                current = current.next;
+            }
+        });
+
+        return values;
+    }
+
     toString() {
         let mapString = "";
 
