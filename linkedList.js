@@ -7,6 +7,10 @@ class ListNode {
     constructor(key, value) {
         this.key = key;
         this.value = value;
+
+        /**
+         * @type {ListNode | null}
+         */
         this.next = null;
     }
 }
@@ -45,6 +49,10 @@ class LinkedList {
             current.next = node;
             this.#tail = node;
         }
+    }
+
+    get head() {
+        return this.#head;
     }
 
     /**
