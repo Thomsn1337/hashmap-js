@@ -151,6 +151,22 @@ class HashMap {
         return values;
     }
 
+    entries() {
+        const entries = [];
+
+        this.#buckets.forEach((bucket) => {
+            let current = bucket.head;
+
+            while (current) {
+                entries.push([current.key, current.value]);
+
+                current = current.next;
+            }
+        });
+
+        return entries;
+    }
+
     toString() {
         let mapString = "";
 
