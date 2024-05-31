@@ -50,6 +50,23 @@ class LinkedList {
     /**
      * @param {string} key
      *
+     * @returns {boolean}
+     */
+    hasKey(key) {
+        let current = this.#head;
+
+        while (current) {
+            if (current.key === key) return true;
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param {string} key
+     *
      * @returns {ListNode | null}
      */
     getNode(key) {
