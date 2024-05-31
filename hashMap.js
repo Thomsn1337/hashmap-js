@@ -2,6 +2,7 @@ import LinkedList from "./linkedList.js";
 
 class HashMap {
     #capacity;
+    #initialCapacity;
     #buckets;
     #size;
 
@@ -10,7 +11,8 @@ class HashMap {
      * @param {number} [loadFactor=0.75]
      */
     constructor(capacity = 16, loadFactor = 0.75) {
-        this.#capacity = capacity;
+        this.#initialCapacity = capacity;
+        this.#capacity = this.#initialCapacity;
         this.loadFactor = loadFactor;
         this.#size = 0;
 
@@ -101,6 +103,14 @@ class HashMap {
 
     get size() {
         return this.#size;
+    }
+
+    clear() {
+        this.#capacity = this.#initialCapacity;
+        this.#size = 0;
+        this.#buckets = new Array(this.#capacity)
+            .fill(null)
+            .map(() => new LinkedList());
     }
 
     toString() {
