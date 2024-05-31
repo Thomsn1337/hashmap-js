@@ -79,6 +79,22 @@ class HashMap {
         return false;
     }
 
+    /**
+     * @param {string} key
+     *
+     * @returns {boolean}
+     */
+    remove(key) {
+        const hashCode = this.#hash(key);
+        const bucket = this.#buckets[hashCode];
+
+        if (bucket.removeByKey(key)) {
+            return true;
+        }
+
+        return false;
+    }
+
     toString() {
         let mapString = "";
 
