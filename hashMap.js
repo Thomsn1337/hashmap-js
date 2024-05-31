@@ -3,6 +3,7 @@ import LinkedList from "./linkedList.js";
 class HashMap {
     #capacity;
     #buckets;
+    #size;
 
     /**
      * @param {number} [capacity=16]
@@ -11,6 +12,7 @@ class HashMap {
     constructor(capacity = 16, loadFactor = 0.75) {
         this.#capacity = capacity;
         this.loadFactor = loadFactor;
+        this.#size = 0;
 
         /**
          * @type {HashMap[]}
@@ -45,6 +47,7 @@ class HashMap {
 
         if (!node) {
             bucket.append(key, value);
+            this.#size += 1;
         } else {
             node.value = value;
         }
@@ -89,10 +92,15 @@ class HashMap {
         const bucket = this.#buckets[hashCode];
 
         if (bucket.removeByKey(key)) {
+            this.#size -= 1;
             return true;
         }
 
         return false;
+    }
+
+    get size() {
+        return this.#size;
     }
 
     toString() {
