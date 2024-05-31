@@ -49,6 +49,16 @@ class HashMap {
             node.value = value;
         }
     }
+
+    toString() {
+        let mapString = "";
+
+        this.#buckets.forEach((bucket) => {
+            mapString += `${bucket.toString()}\n`;
+        });
+
+        return mapString;
+    }
 }
 
 export default HashMap;
