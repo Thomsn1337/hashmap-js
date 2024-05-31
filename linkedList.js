@@ -47,6 +47,23 @@ class LinkedList {
         }
     }
 
+    /**
+     * @param {string} key
+     *
+     * @returns {ListNode | null}
+     */
+    getNode(key) {
+        let current = this.#head;
+
+        while (current) {
+            if (current.key === key) return current;
+
+            current = current.next;
+        }
+
+        return null;
+    }
+
     toString() {
         let current = this.#head;
         let listString = "";
