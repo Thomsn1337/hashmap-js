@@ -53,6 +53,10 @@ class HashMap {
         } else {
             node.value = value;
         }
+
+        if (this.#checkLoadFactor()) {
+            this.#resize();
+        }
     }
 
     /**
@@ -151,6 +155,9 @@ class HashMap {
         return values;
     }
 
+    /**
+     * @returns {any[][]}
+     */
     entries() {
         const entries = [];
 
@@ -165,6 +172,37 @@ class HashMap {
         });
 
         return entries;
+    }
+
+    /**
+     * @returns {boolean}
+     */
+    #checkLoadFactor() {
+        let filledBuckets = 0;
+
+        this.#buckets.forEach((bucket) => {
+            if (bucket.head !== null) filledBuckets += 1;
+        });
+
+        if (filledBuckets / this.#capacity >= this.loadFactor) {
+            return true;
+        }
+
+        return false;
+    }
+
+    #resize() {
+        const entries = this.entries();
+
+        this.#capacity *= 2;
+        this.#size = 0;
+        this.#buckets = new Array(this.#capacity)
+            .fill(null)
+            .map(() => new LinkedList());
+
+        entries.forEach((entry) => {
+            this.set(entry[0], entry[1]);
+        });
     }
 
     toString() {
