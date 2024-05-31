@@ -81,6 +81,34 @@ class LinkedList {
         return null;
     }
 
+    /**
+     * @param {string} key
+     *
+     * @returns {boolean}
+     */
+    removeByKey(key) {
+        let current = this.#head;
+        let previous = null;
+
+        while (current) {
+            if (current.key === key) {
+                if (!previous) {
+                    this.#head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+
+                current.next = null;
+                return true;
+            }
+
+            previous = current;
+            current = current.next;
+        }
+
+        return false;
+    }
+
     toString() {
         let current = this.#head;
         let listString = "";
