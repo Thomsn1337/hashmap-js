@@ -50,6 +50,21 @@ class HashMap {
         }
     }
 
+    /**
+     * @param {string} key
+     *
+     * @returns {any | null}
+     */
+    get(key) {
+        const hashCode = this.#hash(key);
+        const bucket = this.#buckets[hashCode];
+        const node = bucket.getNode(key);
+
+        if (!node) return null;
+
+        return node.value;
+    }
+
     toString() {
         let mapString = "";
 
