@@ -1,4 +1,5 @@
 import LinkedList from "./linkedList.js";
+
 class HashMap {
     #capacity;
     #buckets;
@@ -14,6 +15,20 @@ class HashMap {
             .map(() => new LinkedList());
 
         this.loadFactor = loadFactor;
+    }
+
+    /**
+     * @param {string} key
+     */
+    hash(key) {
+        let code = 0;
+        const primeNumber = 13;
+
+        for (let i = 0; i < key.length; i++) {
+            code = (primeNumber * code + key.charCodeAt(i)) % this.#capacity;
+        }
+
+        return code;
     }
 }
 
