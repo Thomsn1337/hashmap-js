@@ -65,6 +65,20 @@ class HashMap {
         return node.value;
     }
 
+    /**
+     * @param {string} key
+     *
+     * @returns {boolean}
+     */
+    has(key) {
+        const hashCode = this.#hash(key);
+        const bucket = this.#buckets[hashCode];
+
+        if (bucket.hasKey(key)) return true;
+
+        return false;
+    }
+
     toString() {
         let mapString = "";
 
