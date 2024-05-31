@@ -113,6 +113,25 @@ class HashMap {
             .map(() => new LinkedList());
     }
 
+    /**
+     * @returns {string[]}
+     */
+    keys() {
+        const keys = [];
+
+        this.#buckets.forEach((bucket) => {
+            let current = bucket.head;
+
+            while (current) {
+                keys.push(current.key);
+
+                current = current.next;
+            }
+        });
+
+        return keys;
+    }
+
     toString() {
         let mapString = "";
 
